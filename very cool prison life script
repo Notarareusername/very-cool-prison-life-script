@@ -1,0 +1,70 @@
+if game.PlaceId == 155615604 then
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Dashy", "Sentinel")
+local Teleports = Window:NewTab("Teleports")
+local TeleportsSection = Teleports:NewSection("Teleports")
+TeleportsSection:NewButton("Armory", "Teleports to the armory", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(836.220093, 99.9900055, 2269.02124, 0.998910367, 8.1398035e-09, 0.0466697961, -1.0636211e-08, 1, 5.32425339e-08, -0.0466697961, -5.36808962e-08, 0.998910367))
+end)
+TeleportsSection:NewButton("Cafe", "Teleports to the cafe", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(931.34198, 99.9899597, 2289.1438, 0.999986172, -2.69102213e-10, 0.00525342021, 1.82626462e-12, 1, 5.08765652e-08, -0.00525342021, -5.08758546e-08, 0.999986172))
+end)
+TeleportsSection:NewButton("Outside", "Teleports you outside", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(791.872253, 97.9999466, 2502.51489, -0.999973118, 4.98501684e-09, 0.00733608939, 4.96504704e-09, 1, -2.74035172e-09, -0.00733608939, -2.70385403e-09, -0.999973118))
+end)
+TeleportsSection:NewButton("Cells", "Teleports to the cells", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(917.801392, 99.9899902, 2426.677, -0.999980509, -2.09900333e-10, -0.00624606013, 1.07770647e-10, 1, -5.08590823e-08, 0.00624606013, -5.08587625e-08, -0.999980509))
+end)
+TeleportsSection:NewButton("Yard Door", "Teleports to the yard door", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(820.652893, 99.9900055, 2373.71558, -0.999954581, -1.65898992e-08, 0.00953093637, -1.63006177e-08, 1, 3.042949e-08, -0.00953093637, 3.02727479e-08, -0.999954581))
+end)
+TeleportsSection:NewButton("Cafe Kitchen", "Teleports to the cafe kitchen", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(915.624573, 99.9899597, 2220.61792, -0.998898268, 4.33109149e-09, -0.0469307303, 6.50321752e-09, 1, -4.61309106e-08, 0.0469307303, -4.63852814e-08, -0.998898268))
+end)
+TeleportsSection:NewButton("Security", "Teleports to the security office", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(794.72522, 99.9900055, 2331.33228, 0.999027014, 2.36564524e-09, -0.0441030264, -1.34656575e-09, 1, 2.31365007e-08, 0.0441030264, -2.30546e-08, 0.999027014))
+end)
+TeleportsSection:NewButton("Main Hall", "Teleports to the main hall", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(918.788269, 99.9900055, 2363.46997, 0.0423464552, -6.70804781e-08, -0.99910301, 6.96708025e-09, 1, -6.68454234e-08, 0.99910301, -4.13015622e-09, 0.0423464552))
+end)
+TeleportsSection:NewButton("Criminal Base", "Teleports to the criminal base", function()
+    game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-919.971802, 95.3272018, 2138.30273, 0.00865160581, -6.38041442e-09, 0.999962568, -1.05526482e-07, 1, 7.29366345e-09, -0.999962568, -1.05585663e-07, 0.00865160581))
+end)
+
+--MAIN
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+MainSection:NewDropdown("Get Gun", "Gives the humanoid a random gun", {"Remington 870", "AK-47", "M9"}, function(v)
+   local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+   local Event = game:GetService("Workspace").Remote.ItemHandler
+   Event:InvokeServer(A_1)
+end)
+MainSection:NewDropdown("Gun Mod", "Messes with the humanoids gun", {"Remington 870", "AK-47", "M9"}, function(v)
+local module = nil
+if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
+module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(v) then
+module = require(game:GetService("Players").LocalPlayer.Character[v].GunStates)
+end
+if module ~= nil then
+   module["MaxAmmo"] = math.huge
+   module["CurrentAmmo"] = math.huge
+   module["StoredAmmo"] = math.huge
+   module["FireRate"] = 0.000001
+   module["Spread"] = 0
+   module["Range"] = math.huge
+   module["Bullets"] = 10
+   module["AutoFire"] = true
+end
+end)
+
+--PLAYER
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Player")
+PlayerSection:NewSlider("Walkspeed", "Changes the humanoids walkspeed", 250, 16, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+PlayerSection:NewSlider("Jumppower", "Changes the humanoids jumppower", 250, 16, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+end
